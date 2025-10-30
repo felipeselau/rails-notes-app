@@ -1,0 +1,9 @@
+<div class="card" style="margin-bottom: 16px;">
+  <%= render @task %>
+  </div>
+
+<div style="display:flex; gap: 10px; flex-wrap: wrap;">
+  <%= link_to "Edit task", edit_task_path(@task), class: "btn" %>
+  <%= link_to "Back to tasks", tasks_path, class: "btn" %>
+  <%= button_to "Destroy task", @task, method: :delete, class: "btn btn--danger" %>
+</div>

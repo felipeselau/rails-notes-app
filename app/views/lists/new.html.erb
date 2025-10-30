@@ -1,0 +1,9 @@
+<% content_for :title, "New list" %>
+
+<h1>New list</h1>
+<div class="card" style="margin: 12px 0 16px;">
+  <%= render "form", list: @list %>
+  </div>
+<div style="display:flex; gap: 10px;">
+  <%= link_to "Back to lists", lists_path, class: "btn" %>
+  </div>

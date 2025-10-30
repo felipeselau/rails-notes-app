@@ -1,0 +1,25 @@
+<% content_for :title, "Notes" %>
+
+<h1>Notes</h1>
+
+<div style="margin: 12px 0 16px; display:flex; justify-content: flex-end;">
+  <%= link_to "New note", new_note_path, class: "btn btn--primary" %>
+  </div>
+
+<% if @notes.any? %>
+  <div id="notes">
+    <% @notes.each do |note| %>
+      <%= render note %>
+      <p>
+        <%= link_to "Show this note", note, class: "btn" %>
+      </p>
+    <% end %>
+  </div>
+<% else %>
+  <section class="card" style="text-align:center; padding: 48px;">
+    <div style="font-size: 36px; line-height: 1; margin-bottom: 10px;">📝</div>
+    <h2 style="margin: 0 0 8px 0;">No notes yet</h2>
+    <p style="margin: 0 0 16px 0; color: var(--muted);">Create your first note</p>
+    <%= link_to "New note", new_note_path, class: "btn btn--primary" %>
+  </section>
+<% end %>

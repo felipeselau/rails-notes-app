@@ -1,0 +1,9 @@
+<div class="card" style="margin-bottom: 16px;">
+  <%= render @note %>
+  </div>
+
+<div style="display:flex; gap: 10px; flex-wrap: wrap;">
+  <%= link_to "Edit note", edit_note_path(@note), class: "btn" %>
+  <%= link_to "Back to notes", notes_path, class: "btn" %>
+  <%= button_to "Destroy note", @note, method: :delete, class: "btn btn--danger" %>
+</div>

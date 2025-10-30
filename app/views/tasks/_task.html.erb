@@ -1,0 +1,35 @@
+<div id="<%= dom_id task %>" class="card">
+  <div class="task-item">
+    <div class="task-checkbox">
+      <input type="checkbox" <%= "checked" if task.completed? %> disabled>
+    </div>
+    <div>
+      <div class="task-title"><%= task.title %></div>
+      <% if task.content.present? %>
+        <div style="color: var(--muted); margin-top: 4px;"><%= truncate(task.content, length: 140) %></div>
+      <% end %>
+      <div class="task-meta">
+        <% status = task.status.presence || "pending" %>
+        <span class="badge badge--status-<%= status %>">
+          <%# status pill %>
+          <span>Status</span>
+          <strong><%= status.humanize %></strong>
+        </span>
+        <% if task.due_date.present? %>
+          <span class="badge badge--due">Due: <%= l(task.due_date) %></span>
+        <% end %>
+        <% if task.priority.present? %>
+          <% pr = task.priority.to_i %>
+          <% cls = pr >= 3 ? "priority-high" : (pr == 2 ? "priority-medium" : "priority-low") %>
+          <span class="badge">
+            <span class="priority-dot <%= cls %>"></span>
+            Priority <%= pr %>
+          </span>
+        <% end %>
+      </div>
+    </div>
+    <div class="task-actions">
+      <%= link_to "Open", task_path(task), class: "btn" %>
+    </div>
+  </div>
+</div>

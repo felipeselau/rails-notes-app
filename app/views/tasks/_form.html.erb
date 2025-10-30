@@ -1,0 +1,54 @@
+<%= form_with(model: task) do |form| %>
+  <% if task.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+        <% task.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :content, style: "display: block" %>
+    <%= form.textarea :content %>
+  </div>
+
+  <div>
+    <%= form.label :due_date, style: "display: block" %>
+    <%= form.date_field :due_date %>
+  </div>
+
+  <div>
+    <%= form.label :status, style: "display: block" %>
+    <%= form.text_field :status %>
+  </div>
+
+  <div>
+    <%= form.label :priority, style: "display: block" %>
+    <%= form.number_field :priority %>
+  </div>
+
+  <% if task.list_id.present? %>
+    <%= form.hidden_field :list_id, value: task.list_id %>
+    <div style="color: var(--muted); margin: 8px 0 0;">
+      List: <%= task.list&.name || task.list_id %>
+    </div>
+  <% else %>
+    <div>
+      <%= form.label :list_id, style: "display: block" %>
+      <%= form.text_field :list_id %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

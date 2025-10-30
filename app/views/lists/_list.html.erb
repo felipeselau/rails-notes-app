@@ -1,0 +1,71 @@
+<div id="<%= dom_id list %>">
+  <div>
+    <strong>Name:</strong>
+    <%= list.name %>
+  </div>
+
+  <div>
+    <strong>Description:</strong>
+    <%= list.description %>
+  </div>
+
+  <div class="stack-lg" style="margin-top: 12px;">
+    <div class="card">
+      <h3>Notes (<%= list.notes.size %>)</h3>
+      <% if list.notes.any? %>
+        <ul class="stack-sm" style="list-style: none; padding: 0; margin: 10px 0 0;">
+          <% list.notes.each do |note| %>
+            <li style="border-bottom: 1px solid var(--border); padding: 10px 0;">
+              <div style="display:flex; justify-content: space-between; align-items: baseline; gap: 12px;">
+                <div>
+                  <strong><%= note.title %></strong>
+                  <% if note.content.present? %>
+                    <div style="color: var(--muted); margin-top: 4px;">
+                      <%= truncate(note.content, length: 140) %>
+                    </div>
+                  <% end %>
+                </div>
+                <%= link_to "Open", note_path(note), class: "btn btn--primary" %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p style="color: var(--muted); margin: 10px 0 0;">No notes yet.</p>
+      <% end %>
+      <div style="margin-top: 12px;">
+        <%= link_to "New note", new_note_path(list_id: list.id), class: "btn" %>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 12px;">
+      <h3>Tasks (<%= list.tasks.size %>)</h3>
+      <% if list.tasks.any? %>
+        <ul class="stack-sm" style="list-style: none; padding: 0; margin: 10px 0 0;">
+          <% list.tasks.each do |task| %>
+            <li style="border-bottom: 1px solid var(--border); padding: 10px 0;">
+              <div style="display:flex; justify-content: space-between; align-items: baseline; gap: 12px;">
+                <div>
+                  <strong><%= task.title %></strong>
+                  <div style="color: var(--muted); margin-top: 4px;">
+                    <span>Status: <%= task.status %></span>
+                    <% if task.due_date.present? %>
+                      · <span>Due: <%= l(task.due_date) %></span>
+                    <% end %>
+                  </div>
+                </div>
+                <%= link_to "Open", task_path(task), class: "btn btn--primary" %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p style="color: var(--muted); margin: 10px 0 0;">No tasks yet.</p>
+      <% end %>
+      <div style="margin-top: 12px;">
+        <%= link_to "New task", new_task_path(list_id: list.id), class: "btn" %>
+      </div>
+    </div>
+  </div>
+
+</div>

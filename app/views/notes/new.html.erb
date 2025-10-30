@@ -1,0 +1,9 @@
+<% content_for :title, "New note" %>
+
+<h1>New note</h1>
+<div class="card" style="margin: 12px 0 16px;">
+  <%= render "form", note: @note %>
+  </div>
+<div style="display:flex; gap: 10px;">
+  <%= link_to "Back to notes", notes_path, class: "btn" %>
+  </div>

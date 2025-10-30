@@ -1,0 +1,10 @@
+<% content_for :title, "Editing task" %>
+
+<h1>Editing task</h1>
+<div class="card" style="margin: 12px 0 16px;">
+  <%= render "form", task: @task %>
+  </div>
+<div style="display:flex; gap: 10px; flex-wrap: wrap;">
+  <%= link_to "Show task", @task, class: "btn" %>
+  <%= link_to "Back to tasks", tasks_path, class: "btn" %>
+  </div>

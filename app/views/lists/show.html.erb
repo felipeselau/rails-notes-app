@@ -1,0 +1,9 @@
+<div class="card" style="margin-bottom: 16px;">
+  <%= render @list %>
+  </div>
+
+<div style="display:flex; gap: 10px; flex-wrap: wrap;">
+  <%= link_to "Edit list", edit_list_path(@list), class: "btn" %>
+  <%= link_to "Back to lists", lists_path, class: "btn" %>
+  <%= button_to "Destroy list", @list, method: :delete, class: "btn btn--danger" %>
+</div>
